@@ -12,8 +12,14 @@
 
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation/output/04_MAKER_control"
-
 COURSEDIR="/data/users/aikiror/genomeAnnotation/CDS_annotation"
+OUTPUT_DIR="/data/users/aikiror/genomeAnnotation/output/05_MAKER_MPI"
+
+#make output dir path if the path doesnt exist
+mkdir -p "${OUTPUT_DIR}"
+
+#change into outputdir path
+cd ${OUTPUT_DIR}
 
 REPEATMASKER_DIR="/data/users/aikiror/genomeAnnotation/CDS_annotation/softwares/RepeatMasker"
 
