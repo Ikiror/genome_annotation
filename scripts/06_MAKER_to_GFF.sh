@@ -5,7 +5,7 @@
 #SBATCH --mem=64G
 #SBATCH --time=24:00:00 
 #SBATCH --output=/data/users/aikiror/genomeAnnotation/logAndReports/06_MAKER_to_GFF/output_06_MAKER_to_GFF_%j.o
-#SBATCH --error=/data/users/aikiror/genomeAnnotation/logAndReports/06_MAKER_to_GFF/error_06_MAKER_to_GFF%j.e
+#SBATCH --error=/data/users/aikiror/genomeAnnotation/logAndReports/06_MAKER_to_GFF/error_06_MAKER_to_GFF_%j.e
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
@@ -30,6 +30,8 @@ cd ${OUTPUTDIR}
 #containers/modules/tools
 MAKERBIN="${COURSEDIR}/softwares/Maker_v3.01.03/src/bin"
 
-$MAKERBIN/gff3_merge -s -d ${INDEX_LOG} > ${ASSEMBLY_PREFIX}.gff
+$MAKERBIN/gff3_merge -s -d ${INDEX_LOG} > ${ASSEMBLY_PREFIX}.all.maker.gff
+
+#####
 $MAKERBIN/gff3_merge -n -s -d ${INDEX_LOG} > ${ASSEMBLY_PREFIX}.all.maker.noseq.gff
 $MAKERBIN/fasta_merge -d ${INDEX_LOG} -o ${ASSEMBLY_PREFIX}
