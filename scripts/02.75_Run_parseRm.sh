@@ -9,14 +9,18 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#this script will help with the TE age estimation workflow
+#this will run the R script that'll process the raw alignement outputs from RepeatMasker - calcs the corrected % of divergenece of each TE copy from its consensus seq
 #02.75_Run_parseRm
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUT_DIR="${WORKDIR}/output/02.75_Run_parseRm"
 INPUT="$WORKDIR/output/01.6_EDTA/pacbio_hifi_Est-0.p_ctg.fa.mod.EDTA.anno/pacbio_hifi_Est-0.p_ctg.fa.mod.out"
 
 PERL_SCRIPT="$WORKDIR/scripts/02.75_parseRM.pl"
 
+#make path to output dir if it doesnt exist
 mkdir -p $OUTPUT_DIR
 
 #change location to output dir

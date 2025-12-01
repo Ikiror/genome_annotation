@@ -19,6 +19,8 @@ mkdir -p $OUTPUT_DIR
 #change path to outdir
 cd "$OUTPUT_DIR"
 
+#path to container
 CONTAINER="/data/courses/assembly-annotation-course/CDS_annotation/containers/MAKER_3.01.03.sif"
 
+#run maker control
 apptainer exec --bind ${WORKDIR} ${CONTAINER} maker -CTL

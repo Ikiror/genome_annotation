@@ -9,12 +9,15 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#this script will run the R script that will plot the number of LTR retrotransposons in each clade with their corresponding clade identity
 #03_full_length_LTRs_identity.R
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 RSCRIPT="${WORKDIR}/scripts/03_full_length_LTRs_identity.R"
 OUTPUT_DIR="${WORKDIR}/output/03_LTR_identity_R_run"
 
+#make path to output dir if it doesnt exist
 mkdir -p $OUTPUT_DIR
 
 #change location to output dir

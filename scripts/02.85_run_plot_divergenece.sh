@@ -11,10 +11,12 @@
 
 #02.85_run_plot_divergenece
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUT_DIR="${WORKDIR}/output/02.85_run_plot_divergenece"
 RSCRIPT="$WORKDIR/scripts/02.85_plot_div.R"
 
+#make path to output dir if it doesnt exist
 mkdir -p $OUTPUT_DIR
 
 #change location to output dir

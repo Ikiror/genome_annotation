@@ -9,6 +9,9 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#this script will refine TE classification for LTR retrotransposons and split them into clades
+#this step will generate the clade classification file using TEsorter
+
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUT_DIR="${WORKDIR}/output/02_clade_separation"
@@ -27,7 +30,7 @@ cd "$OUTPUT_DIR"
 #fasta file
 INPUT="${WORKDIR}/output/01_EDTA/pacbio_hifi_Est-0.p_ctg.fa.mod.EDTA.raw/pacbio_hifi_Est-0.p_ctg.fa.mod.LTR.raw.fa"
 
-assembly.fasta.mod.EDTA.raw/assembly.fasta.mod.LTR.raw.fa
+# assembly.fasta.mod.EDTA.raw/assembly.fasta.mod.LTR.raw.fa
 #split full length LTR-RTs (long terminal repeat retro transposon) into clades
 apptainer exec --bind /data/ ${CONTAINER} TEsorter ${INPUT} -db rexdb-plant
 
