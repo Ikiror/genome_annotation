@@ -9,30 +9,35 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
-#map the protein putative functions to the MAKER produced GFF3 and FASTA files
+#this script maps the protein putative functions to the MAKER produced GFF3 and FASTA files
 
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="$WORKDIR/output/17_maptoGFF_w_longest_sequences"
 COURSEDIR="$WORKDIR/CDS_annotation"
 
+#MAKER container
 MAKERBIN="${COURSEDIR}/softwares/Maker_v3.01.03/src/bin"
 
 prefix="pacbio_hifi_Est-0.p_ctg"
 #make path to outputdir if it doesnt exist
 mkdir -p $OUTPUTDIR
 
+#uniprot db
 UNIPROT_FASTA="$COURSEDIR/data/uniprot/uniprot_viridiplantae_reviewed.fa"
 
+#MAKER prod FASTA and GFF
 MAKER_PROTEIN_FASTA="/data/users/aikiror/genomeAnnotation/output/13_extractLongest/longest_protein_seq_per_gene.fasta"
 #MAKER_PROTEIN_FASTA="$WORKDIR/output/12_extract_mRNA/pacbio_hifi_Est-0.p_ctg.all.maker.proteins.renamed.filtered.fasta"
 MAKER_GFF="$WORKDIR/output/11_filterGFFfile/filtered.genes.renamed.gff3"
 
+#path to blast output 
 BLAST_OUTPUT="$WORKDIR/output/16_proteinAlignement/blastp_output_uniprot_w_longest_sequences"
 BLAST_BESTHITS="$WORKDIR/output/16_proteinAlignement/blastp_output_uniprot_w_longest_sequences.besthits"
 #change to outputdir
 cd $OUTPUTDIR
 
+#map the protein putative functions to the MAKER prod. GFF and FASTA
 cp $MAKER_PROTEIN_FASTA ${prefix}_maker_proteins.fasta.Uniprot
 cp $MAKER_GFF ${prefix}_filtered.maker.filtered.gff3.Uniprot
 $MAKERBIN/maker_functional_fasta $UNIPROT_FASTA $BLAST_BESTHITS $MAKER_PROTEIN_FASTA > ${prefix}_maker_proteins.filtered.fasta.Uniprot

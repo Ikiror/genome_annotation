@@ -9,15 +9,25 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
+#this script will filter the naming of the longest seq per gene and remove the -RA, etc
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="$WORKDIR/output/20_longest_seq"
 
+#fasta file to be cleaned
 INPUT_FASTA="/data/users/aikiror/genomeAnnotation/output/13_extractLongest/longest_protein_seq_per_gene.fasta"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
+
+#change path to outputdir
 cd $OUTPUTDIR
+
+#load module
 module load SeqKit/2.6.1   # if needed
 
+#filter
 # seqkit fx2tab -n -s "$INPUT_FASTA" \
 # | awk -F'\t' '{
 #     name=$1; seq=$2;

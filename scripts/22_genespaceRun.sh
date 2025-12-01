@@ -9,6 +9,9 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
+#this script will run the R script that will run GENESPACE which helps define expected gene positions across multiple genomes
+#comparative genomics
+
 #22_genespaceRun
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 COURSEDIR="$WORKDIR/CDS_annotation"
@@ -17,8 +20,11 @@ GENESPACEDIR="$WORKDIR/output/19_create_bed_file/genespace_workingDir"
 CONTAINER="$COURSEDIR/containers/genespace_latest.sif"
 genespaceRscript="$WORKDIR/scripts/genespace.R"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
 
+#change dir to outputdir
 cd $OUTPUTDIR
 
+#run
 apptainer exec --bind $COURSEDIR --bind $WORKDIR --bind $SCRATCH:/temp $CONTAINER Rscript $genespaceRscript $GENESPACEDIR

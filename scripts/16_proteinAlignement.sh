@@ -9,21 +9,29 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
+#this script will align proteins against the seqs of func. validated proteins w known functions found in the uniprot db
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 CONTAINER="/containers/apptainer/agat-1.2.0.sif"
 OUTPUTDIR="$WORKDIR/output/16_proteinAlignement"
 COURSEDIR="$WORKDIR/CDS_annotation"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
 
+#uniprot database
 UNIPROT_FASTA="$COURSEDIR/data/uniprot/uniprot_viridiplantae_reviewed.fa"
 #PROTEIN_FASTA="$WORKDIR/output/12_extract_mRNA/pacbio_hifi_Est-0.p_ctg.all.maker.proteins.renamed.filtered.fasta"
 PROTEIN_FASTA="/data/users/aikiror/genomeAnnotation/output/13_extractLongest/longest_protein_seq_per_gene.fasta"
+
+#change dir
 cd $OUTPUTDIR
 
+#load module
 module load BLAST+/2.15.0-gompi-2021a
 makeblastdb -in $UNIPROT_FASTA -dbtype prot 
-# this step is already done
+#^this step is already done
 
 blastp -query $PROTEIN_FASTA -db $UNIPROT_FASTA \
     -num_threads 10 -outfmt 6 -evalue 1e-5 -max_target_seqs 10 -out blastp_output_uniprot_w_longest_sequences

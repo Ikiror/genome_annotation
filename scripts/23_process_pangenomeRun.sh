@@ -9,12 +9,15 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#this script will run the R script that will process the .rds output from GENESPACE
 #23_process_pangenomeRun
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 RSCRIPT="/data/users/aikiror/genomeAnnotation/scripts/process_pangenome.R"
 OUTPUT_DIR="${WORKDIR}/output/23_process_pangenomeRun"
 
+#make path to outputdir
 mkdir -p $OUTPUT_DIR
 
 #change location to output dir

@@ -9,13 +9,18 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
+#this script will create a bed file as prep for running GENESPACE
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="$WORKDIR/output/19_create_bed_file"
 FILTERED_GFF3=""/data/users/aikiror/genomeAnnotation/output/11_filterGFFfile/filtered.genes.renamed.gff3
 Accession="Est0"
 BED_FILE="Est0.bed"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
+#change to OUTPUTDIR
 cd $OUTPUTDIR
 
 #extract gene features from GFF3
