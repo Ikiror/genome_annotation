@@ -9,6 +9,7 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#create control files 
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUT_DIR="${WORKDIR}/04_MAKER_control"
@@ -24,3 +25,5 @@ CONTAINER="/data/courses/assembly-annotation-course/CDS_annotation/containers/MA
 
 #run maker control
 apptainer exec --bind ${WORKDIR} ${CONTAINER} maker -CTL
+
+#manually edit maker control file

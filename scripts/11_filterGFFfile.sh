@@ -9,7 +9,8 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
-#filter GFF
+#this script will filter the GFF for quality and for gene features
+
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="$WORKDIR/output/11_filterGFFfile"
@@ -28,7 +29,7 @@ cd $OUTPUTDIR
 perl $MAKERBIN/quality_filter.pl -s $IPRSCAN_GFF > ${gffPrefix}_iprscan_quality_filtered.gff
 # In the above command: -s Prints transcripts with an AED <1 and/or Pfam domain if in gff3
 
-#filtering for genes
+#filtering gff for gene features
 # We only want to keep gene features in the third column of the gff file
 grep -P "\tgene\t|\tCDS\t|\texon\t|\tfive_prime_UTR\t|\tthree_prime_UTR\t|\tmRNA\t" ${gffPrefix}_iprscan_quality_filtered.gff > filtered.genes.renamed.gff3
 # Check

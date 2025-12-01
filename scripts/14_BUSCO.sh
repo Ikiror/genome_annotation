@@ -9,19 +9,24 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
-#assesses genome or annotation completeness
+#this script will run busco to assess genome or annotation completeness
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="${WORKDIR}/output/14_BUSCO"
 COURSEDIR="${WORKDIR}/CDS_annotation"
 
+#path to the longest seq per gene
 LONGEST_PROTEIN="/data/users/aikiror/genomeAnnotation/output/13_extractLongest/longest_protein_seq_per_gene.fasta"
 LONGEST_TRANSCRIPT="/data/users/aikiror/genomeAnnotation/output/13_extractLongest/longest_transcript_seq_per_gene.fasta"
 TRINITY_FASTA="/data/users/aikiror/genomeAnnotation/assemblyData/04_trinity.Trinity.fasta"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
 
+#change dir
 cd $OUTPUTDIR
+
 #load module
 module load BUSCO/5.4.2-foss-2021a
 

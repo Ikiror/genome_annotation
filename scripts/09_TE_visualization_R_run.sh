@@ -9,6 +9,9 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#this script will run the R script that will visualize the TEs
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 RSCRIPT="/data/users/aikiror/genomeAnnotation/scripts/09_TE_annotation_03-annotation_circlize.R"
 OUTPUT_DIR="${WORKDIR}/output/09_TE_visualization_R_run_alt_lgd"

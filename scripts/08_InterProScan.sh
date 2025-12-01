@@ -9,7 +9,7 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
-#this script will annotate the protein sequences with functional domains
+#this script will annotate the protein sequences with functional domains (uses Pfam)
 
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation/"

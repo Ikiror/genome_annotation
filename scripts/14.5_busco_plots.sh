@@ -12,6 +12,7 @@
 #14.5_busco_plots
 #plot busco results
 
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 COURSEDIR="${WORKDIR}/CDS_annotation"
 

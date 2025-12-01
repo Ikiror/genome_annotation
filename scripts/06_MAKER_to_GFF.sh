@@ -30,6 +30,7 @@ cd ${OUTPUTDIR}
 #containers/modules/tools
 MAKERBIN="${COURSEDIR}/softwares/Maker_v3.01.03/src/bin"
 
+#merge individual gffs into one
 $MAKERBIN/gff3_merge -s -d ${INDEX_LOG} > ${ASSEMBLY_PREFIX}.all.maker.gff
 
 #####

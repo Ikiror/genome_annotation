@@ -10,6 +10,7 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end
 
+#run MAKER w MPI
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation/output/04_MAKER_control"
 COURSEDIR="/data/users/aikiror/genomeAnnotation/CDS_annotation"
@@ -21,14 +22,17 @@ mkdir -p "${OUTPUT_DIR}"
 #change into outputdir path
 cd ${OUTPUT_DIR}
 
+#location of the repeatmasker
 REPEATMASKER_DIR="/data/users/aikiror/genomeAnnotation/CDS_annotation/softwares/RepeatMasker"
 
+#make path available
 export PATH=$PATH:"/data/users/aikiror/genomeAnnotation/CDS_annotation/softwares/RepeatMasker"
 
 #load modules
 module load OpenMPI/4.1.1-GCC-10.3.0
 module load AUGUSTUS/3.4.0-foss-2021a
 
+#run
 mpiexec --oversubscribe -n 50 apptainer exec \
     --bind $SCRATCH:/TMP --bind $COURSEDIR --bind /data --bind $AUGUSTUS_CONFIG_PATH --bind $REPEATMASKER_DIR \
     ${COURSEDIR}/containers/MAKER_3.01.03.sif \

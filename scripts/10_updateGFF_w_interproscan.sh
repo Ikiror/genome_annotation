@@ -10,6 +10,8 @@
 #SBATCH --mail-type=end,fail
 
 #update GFF w interproscan results
+#calculate AED values
+
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="$WORKDIR/output/10_updateGFF_w_interproscan"
@@ -17,8 +19,8 @@ COURSEDIR="$WORKDIR/CDS_annotation"
 MAKERBIN="${COURSEDIR}/softwares/Maker_v3.01.03/src/bin"
 
 mkdir -p $OUTPUTDIR
-#update GFF w interproscan results
 
+#location output will go
 IPR_OUTPUT="$OUTPUTDIR/iprscanOutput"
 AED_OUTPUT="$OUTPUTDIR/AEDOutput"
 
@@ -32,6 +34,7 @@ gffPrefix="pacbio_hifi_Est-0.p_ctg.all.maker.noseq"
 
 cd $IPR_OUTPUT
 
+#incorporate interproscan func. annot. into the gff3 file
 $MAKERBIN/ipr_update_gff ${RENAMED_GFF} ${IPRSCAN} > ${gffPrefix}.renamed.iprscan.gff
 
 cd $AED_OUTPUT

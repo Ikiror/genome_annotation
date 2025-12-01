@@ -9,14 +9,21 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
+#This script runs AGAT to generate stats about the performed gene annot.
+
+#directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 CONTAINER="/containers/apptainer/agat-1.2.0.sif"
 OUTPUTDIR="$WORKDIR/output/15_AGAT_stats"
 
+#make path to outputdir
 mkdir -p $OUTPUTDIR
 
+#path to filtered gff
 FILTERED_GFF="$WORKDIR/output/11_filterGFFfile/filtered.genes.renamed.gff3"
 
+#change dir
 cd $OUTPUTDIR
 
+#run agat
 apptainer exec --bind /data/ $CONTAINER agat_sp_statistics.pl -i $FILTERED_GFF -o annotation.stat

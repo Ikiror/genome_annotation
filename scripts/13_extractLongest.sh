@@ -9,17 +9,21 @@
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
-#extract longest seq
+#this script will extract the longest seq per gene
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 OUTPUTDIR="${WORKDIR}/output/13_extractLongest"
 COURSEDIR="${WORKDIR}/CDS_annotation"
 
+#path to fasta files
 PROTEIN_FASTA="$WORKDIR/output/12_extract_mRNA/pacbio_hifi_Est-0.p_ctg.all.maker.proteins.renamed.filtered.fasta"
 TRANSCRIPT_FASTA="$WORKDIR/output/12_extract_mRNA/pacbio_hifi_Est-0.p_ctg.all.maker.transcripts.renamed.filtered.fasta"
 
+#make outputdir
 mkdir -p $OUTPUTDIR
 
+#change directories
 cd $OUTPUTDIR
+
 #load module
 module load SeqKit/2.6.1
 #sort fasta sequences by length; reverse order so longest first
