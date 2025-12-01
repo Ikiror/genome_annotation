@@ -11,7 +11,7 @@
 
 WORKDIR="/data/users/aikiror/genomeAnnotation"
 RSCRIPT="/data/users/aikiror/genomeAnnotation/scripts/09_TE_annotation_03-annotation_circlize.R"
-OUTPUT_DIR="${WORKDIR}/output/09_TE_visualization_R_run"
+OUTPUT_DIR="${WORKDIR}/output/09_TE_visualization_R_run_alt_lgd"
 
 mkdir -p $OUTPUT_DIR
 

@@ -4,15 +4,15 @@
 #SBATCH --cpus-per-task=4 
 #SBATCH --mem=16G
 #SBATCH --time=6:00:00 
-#SBATCH --output=/data/users/aikiror/genomeAnnotation/logAndReports/11_filterGFFfile.sh/output_11_filterGFFfile.sh_%j.o
-#SBATCH --error=/data/users/aikiror/genomeAnnotation/logAndReports/11_filterGFFfile.sh/error_11_filterGFFfile.sh_%j.e
+#SBATCH --output=/data/users/aikiror/genomeAnnotation/logAndReports/11_filterGFFfile/output_11_filterGFFfile_%j.o
+#SBATCH --error=/data/users/aikiror/genomeAnnotation/logAndReports/11_filterGFFfile/error_11_filterGFFfile_%j.e
 #SBATCH --mail-user=amo.ikiror@students.unibe.ch
 #SBATCH --mail-type=end,fail
 
 #filter GFF
 #directories
 WORKDIR="/data/users/aikiror/genomeAnnotation"
-OUTPUTDIR="$WORKDIR/output/11_filterGFFfile.sh"
+OUTPUTDIR="$WORKDIR/output/11_filterGFFfile"
 COURSEDIR="$WORKDIR/CDS_annotation"
 MAKERBIN="${COURSEDIR}/softwares/Maker_v3.01.03/src/bin"
 

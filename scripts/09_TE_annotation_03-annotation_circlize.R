@@ -7,6 +7,10 @@ library(ComplexHeatmap)
 gff_file <- "/data/users/aikiror/genomeAnnotation/output/01.6_EDTA/pacbio_hifi_Est-0.p_ctg.fa.mod.EDTA.anno/pacbio_hifi_Est-0.p_ctg.fa.mod.EDTA.TEanno.gff3"
 gff_data <- read.table(gff_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
 
+#path to gene annotation
+gene_annotation_data_file <- "/data/users/aikiror/genomeAnnotation/output/11_filterGFFfile/filtered.genes.renamed.gff3"
+gene_annotation_data <- read.table(gene_annotation_data_file, header = FALSE, sep = "\t", stringsAsFactors = FALSE)
+
 # Check the superfamilies present in the GFF3 file, and their counts
 gff_data$V3 %>% table()
 
@@ -40,30 +44,29 @@ filter_superfamily <- function(gff_data, superfamily, custom_ideogram) {
     return(filtered_data)
 }
 
-pdf("02-TE_density.pdf", width = 10, height = 10)
+pdf("02-TE_density_w_genes.pdf", width = 10, height = 10)
 gaps <- c(rep(1, length(custom_ideogram$chr) - 1), 5) # Add a gap between scaffolds, more gap for the last scaffold
 circos.par(start.degree = 90, gap.after = 1, track.margin = c(0, 0), gap.degree = gaps)
 # Initialize the circos plot with the custom ideogram
 circos.genomicInitialize(custom_ideogram)
 
 # Plot te density
+circos.genomicDensity(filter_superfamily(gene_annotation_data, "gene", custom_ideogram), count_by = "number", col = "black", track.height = 0.07, window.size = 1e5)
 circos.genomicDensity(filter_superfamily(gff_data, "Gypsy_LTR_retrotransposon", custom_ideogram), count_by = "number", col = "darkgreen", track.height = 0.07, window.size = 1e5)
 circos.genomicDensity(filter_superfamily(gff_data, "Copia_LTR_retrotransposon", custom_ideogram), count_by = "number", col = "darkred", track.height = 0.07, window.size = 1e5)
 circos.genomicDensity(filter_superfamily(gff_data, "L1_LINE_retrotransposon", custom_ideogram), count_by = "number", col = "darkblue", track.height = 0.07, window.size = 1e5)
-circos.genomicDensity(filter_superfamily(gff_data, "hAT_TIR_transposon", custom_ideogram), count_by = "number", col = "darkblue", track.height = 0.07, window.size = 1e5)
-circos.genomicDensity(filter_superfamily(gff_data, "Mutator_TIR_transposon", custom_ideogram), count_by = "number", col = "darkblue", track.height = 0.07, window.size = 1e5)
-circos.genomicDensity(filter_superfamily(gff_data, "PIF_Harbinger_TIR_transposon", custom_ideogram), count_by = "number", col = "darkblue", track.height = 0.07, window.size = 1e5)
-circos.genomicDensity(filter_superfamily(gff_data, "CACTA_TIR_transposon", custom_ideogram), count_by = "number", col = "darkblue", track.height = 0.07, window.size = 1e5)
+circos.genomicDensity(filter_superfamily(gff_data, "Mutator_TIR_transposon", custom_ideogram), count_by = "number", col = "purple", track.height = 0.07, window.size = 1e5)
+circos.genomicDensity(filter_superfamily(gff_data, "CACTA_TIR_transposon", custom_ideogram), count_by = "number", col = "orange", track.height = 0.07, window.size = 1e5)
 
 circos.clear()
 
 #L1_LINE_retrotransposon; hAT_TIR_transposon
 
 lgd <- Legend(
-    title = "Superfamily", at = c("Gypsy_LTR_retrotransposon", "Copia_LTR_retrotransposon"),
-    legend_gp = gpar(fill = c("darkgreen", "darkred"))
+    title = "Superfamily", at = c("gene","Gypsy_LTR_retrotransposon", "Copia_LTR_retrotransposon","L1_LINE_retrotransposon","Mutator_TIR_transposon","CACTA_TIR_transposon"),
+    legend_gp = gpar(fill = c("black","darkgreen", "darkred", "darkblue","purple","orange"))
 )
-draw(lgd, x = unit(8, "cm"), y = unit(10, "cm"), just = c("center"))
+draw(lgd, x = unit(12, "cm"), y = unit(14, "cm"), just = c("center"))
 
 dev.off()
 
