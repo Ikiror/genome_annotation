@@ -3,3 +3,6 @@ logAndReports/
 assemblyData/
 CDS_annotation
 pacbio_hifi_Est-0.p_ctg.maker.output
+busco_1041113.log
+pacbio_hifi_Est-0.p_ctg.all.maker.noseq.renamed.gff.AED.txt
+pacbio_hifi_Est-0.p_ctg.all.maker.noseq.renamed.iprscan.gff
